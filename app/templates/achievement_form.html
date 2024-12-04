@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!-- app/templates/app/achievement_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить/Изменить Достижение</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Изменить{% else %}Добавить{% endif %} Достижение</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{% url 'achievements' %}">Назад к списку достижений</a>
+</body>
+</html>
