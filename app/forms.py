@@ -1,6 +1,6 @@
 # app/forms.py
 from django import forms
-from .models import Advantage
+from .models import Advantage, Review
 
 
 # title
@@ -12,4 +12,10 @@ from .models import Advantage
 class AchievementForm(forms.ModelForm):
     class Meta:
         model = Advantage
-        fields = ['title', 'description', 'is_favorite']  # Укажите поля вашей модели
+        fields = ['title', 'description', 'is_favorite']
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['content']

@@ -1,17 +1,76 @@
-<!-- app/templates/app/achievement.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ achievement.title }}</title>
-</head>
-<body>
+{% extends 'app/base.html' %}
+
+{% block title %}{{ achievement.title }}{% endblock %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="{% url 'achievement_update' achievement.id %}">Редактировать</a>
 <a href="{% url 'achievement_delete' achievement.id %}">Удалить</a>
+{% endif %}
+{% endif %}
 
 <h1>{{ achievement.title }}</h1>
+
+<p>Нравится: {{ achievement.likes_count }} | Не нравится: {{ achievement.dislikes_count}}</p>
+
+{% if user.is_authenticated %}
+<form action="{% url 'like_achievement' achievement.id %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">
+        Нравится
+    </button>
+</form>
+
+<form action="{% url 'dislike_achievement' achievement.id %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">
+        Не нравится
+    </button>
+</form>
+
+
+{% else %}
+<p><a href="{% url 'login' %}">Войдите</a>, чтобы оценить это достижение.</p>
+{% endif %}
+</li>
+
 <p>{{ achievement.description }}</p>
 <p>{{ achievement.created_at }}</p>
+
+<h4>Все отзывы</h4>
+
+<h3>Оставить отзыв</h3>
+
+<form action="{% url 'review' achievement.id %}" method="post">
+    {% csrf_token %}
+
+    <div>
+        <label for="id_name">Имя:</label>
+        <input type="text" name="name" id="id_name" required>
+    </div>
+
+    <div>
+        <label for="id_content">Отзыв:</label>
+        <textarea name="content" id="id_content" required></textarea>
+    </div>
+
+    <button type="submit">Отправить отзыв</button>
+</form>
+
+
+<ul>
+    {% for review in reviews %}
+    <li>
+        <strong>{{ review.name }}</strong> ({{ review.created_at }})<br>
+        <em>{{ review.email }}</em><br>
+        <p>{{ review.content }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
 <a href="{% url 'achievements' %}">Назад к достижениям</a> <!-- Ссылка на список достижений -->
-</body>
-</html>
+
+{% endblock %}

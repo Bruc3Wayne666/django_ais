@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Достижения</title>
-</head>
-<body>
+{% extends 'app/base.html' %}
+
+    {% block content %}
 <h1>Мои Достижения</h1>
 
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="{% url 'achievement_create' %}" style="padding: 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Добавить Достижение</a>
+{% endif %}
+{% endif %}
 
 <p>
     <a href="?sort=created_at">Сортировать по дате создания</a> |
@@ -23,5 +28,5 @@
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+
+{% endblock %}
