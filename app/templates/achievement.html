@@ -1,0 +1,14 @@
+<!-- app/templates/app/achievement.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ achievement.title }}</title>
+</head>
+<body>
+    <h1>{{ achievement.title }}</h1>
+    <p>{{ achievement.description }}</p>
+    <p>{{ achievement.created_at }}</p>
+    <a href="{% url 'achievements' %}">Назад к достижениям</a> <!-- Ссылка на список достижений -->
+</body>
+</html>

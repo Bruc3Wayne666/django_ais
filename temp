@@ -1,0 +1,4 @@
+    <!--    <li>-->
+    <!--        {{ advantage.title }} - {{ advantage.created_at }} {% if advantage.is_favorite %} (Избранное) {% endif %}-->
+    <!--        <a href="{% url 'achievement_detail' achievement.id %}">{{ achievement.title }}</a>-->
+    <!--    </li>-->

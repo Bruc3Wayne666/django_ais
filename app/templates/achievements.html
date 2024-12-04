@@ -17,7 +17,7 @@
 <ul>
     {% for advantage in advantages %}
     <li>
-        {{ advantage.title }} - {{ advantage.created_at }} {% if advantage.is_favorite %} (Избранное) {% endif %}
+        <a href="{% url 'achievement' advantage.id %}">{{ advantage.title }}</a> - {{ advantage.created_at }} {% if advantage.is_favorite %} (Избранное) {% endif %}
     </li>
     {% endfor %}
 </ul>
