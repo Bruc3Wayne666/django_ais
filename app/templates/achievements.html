@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Достижения</title>
+</head>
+<body>
+<h1>Мои Достижения</h1>
+
+<p>
+    <a href="?sort=created_at">Сортировать по дате создания</a> |
+    <a href="?sort=title">Сортировать по заголовку</a> |
+    <a href="?sort=is_favorite">Сортировать по «избранному»</a>
+</p>
+
+<ul>
+    {% for advantage in advantages %}
+    <li>
+        {{ advantage.title }} - {{ advantage.created_at }} {% if advantage.is_favorite %} (Избранное) {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
